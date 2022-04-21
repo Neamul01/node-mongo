@@ -1,8 +1,8 @@
 const express = require('express');
-const app = express();
+const cors = require('cors');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
-const cors = require('cors');
+const app = express();
 const port = process.env.PORT || 5000;
 
 //use midleware
@@ -21,10 +21,10 @@ async function run() {
         await client.connect();
 
         const userCollection = client.db('foodExpress').collection('user');
-        const user = { name: "Noman", email: "Noman@gmail.com" };
 
-        const result = await userCollection.insertOne(user);
-        console.log(`a user was inserted a with id:${result.insertedId} `);
+        app.post('/user', (req, res) => {
+
+        })
     }
     finally {
         // await client.close();
